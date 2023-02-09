@@ -1,0 +1,12 @@
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      fail:
+        type: boolean
+jobs:
+  assert:
+    if: ${{ inputs.fail }}
+    continue-on-error: ${{ github && 'failure' }}
+    steps:
+    - run: exit 1
